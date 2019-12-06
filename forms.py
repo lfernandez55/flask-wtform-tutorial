@@ -11,6 +11,14 @@ from wtforms.validators import (DataRequired,
                                 Length,
                                 URL)
 
+class MyForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+    email = StringField('Email', [
+            Email(message='Not a valid email address.'),
+            DataRequired()])
+    body = TextAreaField('Message', [
+        DataRequired(),
+        Length(min=4, message='Your message is too short.')])
 
 class ContactForm(FlaskForm):
     """Contact form."""
